@@ -1,0 +1,27 @@
+<?php
+	
+	
+    // CREATING JSON BODY
+    $body = '{{
+        "product_id" : "MFIN-5-OR",
+        "denomination" : "50",
+        "send_sms" : false,
+        "sms_text" : ""
+    }';
+    
+    // EXECUTING CURL COMMAND
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url."topup/exec/2347061933309");
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_USERPWD, "$USERNAME:$PASSWORD");
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array( 
+            'Authorization: Bearer '.$authorization,
+            "Accept: application/json" 
+        )
+    );
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+    $result = curl_exec($ch);
+
+?>
